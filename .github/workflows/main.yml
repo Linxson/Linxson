@@ -1,20 +1,36 @@
-name: GitHub Actions Build and Deploy Demo
+name: generate animation
+
 on:
+  # run automatically every 6 hours
+  schedule:
+    - cron: "0 0 */1 * *" 
+  
+  # allows to manually run the job at any time
+  workflow_dispatch:
+  
+  # run on every push on the master branch
   push:
     branches:
-      - master
-jobs:
-  build-and-deploy:
-    runs-on: ubuntu-latest
-    steps:
-    - name: Checkout
-      uses: actions/checkout@master
+    - master
+    
+  
 
-    - name: Build and Deploy
-      uses: JamesIves/github-pages-deploy-action@master
-      env:
-        WAKATIME_API_KEY: ${{ secrets.WAKATIME_API_KEY }}
-        BRANCH: gh-pages
-        FOLDER: build
-        BUILD_SCRIPT: npm install && npm run build
-          
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: generate github-contribution-grid-snake.svg
+        uses: Platane/snk@master
+        with:
+          github_user_name: ${{ github.repository_owner }}
+          svg_out_path: dist/github-contribution-grid-snake.svg
+
+      - name: push github-contribution-grid-snake.svg to the output branch
+        uses: crazy-max/ghaction-github-pages@v2.5.0
+        with:
+          target_branch: output
+          build_dir: dist
+        env:
+          WAKATIME_API_KEY: ${{ secrets.WAKATIME_API_KEY }}
