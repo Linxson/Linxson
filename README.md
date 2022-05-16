@@ -7,7 +7,7 @@
   <br>
   <p>My Stats<br>
   (stay angry，stay hungry:wave:)<br></p>
-  <a href="https://github.com/edisonlee55"><img src="https://github-readme-stats.vercel.app/api?username=Linxson&hide_border=true&show_icons=true" alt="edisonlee55's github stats">
+  <a href="https://github.com/Linxson"><img src="https://github-readme-stats.vercel.app/api?username=Linxson&hide_border=true&show_icons=true" alt="Linxson's github stats"></a>
   <br>
   <br>
   <p>My Visitor<br>
